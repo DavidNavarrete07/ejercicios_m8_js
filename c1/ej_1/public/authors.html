@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biblioteca - Autores</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4 py-2">
+                <h3 class="text-center text-uppercase fw-bold py-4">Agregar un autor</h3>
+                <form id="formAgregarAutor">
+                    <div class="mb-3">
+                        <label for="inputPrimerNombre" class="form-label fw-bold">Primer nombre</label>
+                        <input type="text" class="form-control" id="inputPrimerNombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputApellido" class="form-label fw-bold">Apellido</label>
+                        <input type="text" class="form-control" id="inputApellido">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="inputNotas"
+                                style="height: 100px"></textarea>
+                            <label for="inputNotas" class="fw-bold">Notas</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+            <div class="col-8">
+                <h3 class="text-center text-uppercase fw-bold py-4">Listado de autores</h3>
+                <table class="table">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Primer nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Notas</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="./assets/js/autores.js"></script>
+</body>
+
+</html>
