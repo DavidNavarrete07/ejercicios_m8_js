@@ -19,7 +19,7 @@ router.post('/libros', async (req, res) => {
     } catch (error) {
         console.log('Error al crear el Libro: ' + error);
     }
-    res.redirect('/libros');
+    res.redirect('http://localhost:3000/api/libros');
 });
 
 router.get('/autores', async (req, res) => {
@@ -37,7 +37,7 @@ router.post('/autores', async (req, res) => {
     } catch (error) {
         console.log('Error al crear un Autor: ' + error);
     }
-    res.redirect('/autores');
+    res.redirect('http://localhost:3000/api/autores');
 });
 
 router.get('/libros/ver/:libro_id', async (req, res) => {
