@@ -7,7 +7,7 @@ require('../models/asociacion.js');
 
 router.get('/libros', async (req, res) => {
     const libros = await Libro.findAll();
-    res.json(libros);
+    res.render('home.html', { libros });
 });
 
 router.post('/libros', async (req, res) => {
@@ -19,11 +19,12 @@ router.post('/libros', async (req, res) => {
     } catch (error) {
         console.log('Error al crear el Libro: ' + error);
     }
+    res.redirect('/libros');
 });
 
 router.get('/autores', async (req, res) => {
     const autores = await Autor.findAll();
-    res.json(autores);
+    res.render('autores.html', { autores });
 });
 
 router.post('/autores', async (req, res) => {
@@ -36,9 +37,24 @@ router.post('/autores', async (req, res) => {
     } catch (error) {
         console.log('Error al crear un Autor: ' + error);
     }
+    res.redirect('/autores');
 });
 
-router.get('/escribir/:libro_id/:autor_id', async(req, res) => {
+router.get('/libros/ver/:libro_id', async (req, res) => {
+    const libroId = req.params.libro_id;
+    const libro = await Libro.findOne({ where: { id: libroId } });
+    const autores = await Autor.findAll();
+    res.render('libro.html', { libro, autores });
+});
+
+router.get('/autores/ver/:autor_id', async (req, res) => {
+    const autorId = req.params.autor_id;
+    const autor = await Autor.findOne({ where: { id: autorId } });
+    const libros = await Libro.findAll();
+    res.render('autor.html', { autor, libros });
+});
+
+router.get('/escribir/:libro_id/:autor_id', async (req, res) => {
     console.log('*****************************************');
     console.log(req.params);
 });

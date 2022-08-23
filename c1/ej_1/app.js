@@ -1,5 +1,7 @@
 const express = require('express');
 const router = require('./routes/routes.js');
+const path = require("path");
+const nunjucks = require("nunjucks");
 
 const app = express();
 
@@ -7,7 +9,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+app.use("/public", express.static('public'));
+
+// se configura nunjucks
+nunjucks.configure(path.resolve(__dirname, "templates"), {
+    express: app,
+    autoscape: true,
+    noCache: true,
+    watch: true,
+  });
+  
 app.use(express.static('node_modules/bootstrap/dist'));
 
 // Impórtamos las rutas

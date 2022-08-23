@@ -41,11 +41,21 @@
                             <th scope="col">ID</th>
                             <th scope="col">Primer nombre</th>
                             <th scope="col">Apellido</th>
-                            <th scope="col">Notas</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for autor in autores %}
+                        <tr>
+                            <td class="fw-bold">{{ autor.id }}</td>
+                            <td class="fst-italic fw-bold">"{{ autor.primerNombre }}"</td>
+                            <td class="fst-italic fw-bold">"{{ autor.apellido }}"</td>
+                            <td>
+                                <a href='http://localhost:3000/api/autores/ver/{{autor.id}}' class="btn btn-info">Ver
+                                    datos</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -54,7 +64,23 @@
     <script src="/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script src="./assets/js/autores.js"></script>
+    <script>
+        const formAgregar = document.querySelector('#formAgregarAutor');
+        // Eventos
+        formAgregar.addEventListener('submit', async () => {
+            let primerNombre = document.querySelector('#inputPrimerNombre').value.trim();
+            let apellido = document.querySelector('#inputApellido').value.trim();
+            let notas = document.querySelector('#inputNotas').value.trim();
+            const response = await fetch('http://localhost:3000/api/autores', {
+                method: 'POST',
+                body: JSON.stringify({
+                    primerNombre,
+                    apellido,
+                    notas,
+                }),
+            });
+        });
+    </script>
 </body>
 
 </html>
