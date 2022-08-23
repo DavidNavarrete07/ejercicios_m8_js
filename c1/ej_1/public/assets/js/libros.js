@@ -14,11 +14,8 @@ async function traerLibros() {
             <td>${l.titulo}</td>
             <td>${l.descripcion}</td>
             <td>
-              <button class="btn btn-warning" onclick="prepararCancion(${i},'${l.id
-      }')">Editar</button>
-              <button class="btn btn-danger" onclick="eliminarCancion(${i},'${l.id
-      }')">Eliminar</button>
-            <a class="btn btn-info" href="https://localhost:3000/api/escribir?libroId=4&autorId=1">Ir</a>
+              <button class="btn btn-warning" onclick="prepararCancion(${i},'${l.id}')">Editar</button>
+              <button class="btn btn-danger" onclick="eliminarCancion(${i},'${l.id}')">Eliminar</button>
             </td>
           </tr>
         `;
