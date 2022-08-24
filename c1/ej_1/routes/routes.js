@@ -24,6 +24,27 @@ router.post('/libros', async (req, res) => {
     res.redirect('http://localhost:3000/api/libros');
 });
 
+router.get('/books/:libro_id', async (req, res) => {
+    const libroId = parseInt(req.params.libro_id);
+    const libro = await Libro.findOne({where: { id: libroId }, include: Autor});
+    let autores = await Autor.findAll({ include: Libro });
+    let arregloAutores = [];
+    for (const autor of autores) {
+        for (const libro of autor.libros) {
+            for (const autorLibro of autores) {
+                if (autor.id != autorLibro.id) {
+                    arregloAutores.push(autorLibro);
+                }
+            }
+        }
+    }
+    res.render('libro.html', { libro, arregloAutores });
+});
+
+router.delete('/books/:libro_id', async (req, res) => {
+    console.log(req.params);
+});
+
 router.get('/authors', async (req, res) => {
     const autores = await Autor.findAll();
     res.render('autores.html', { autores });
@@ -41,32 +62,15 @@ router.post('/authors', async (req, res) => {
     res.redirect('http://localhost:3000/api/authors');
 });
 
-router.get('/books/:libro_id', async (req, res) => {
-    const libroId = req.params.libro_id;
-    const libro = await Libro.findOne({ include: Autor }, { where: { id: libroId } });
-    let autores = await Autor.findAll({include: Libro});
-    let arregloAutores = [];
-    for (const autor of autores) {
-        for (const libro of autor.libros) {
-            for (const autorLibro of autores) {
-                if(autor.id != autorLibro.id){
-                    arregloAutores.push(autorLibro);
-                }
-            }
-        }
-    }
-    res.render('libro.html', { libro, arregloAutores });
-});
-
 router.get('/authors/:autor_id', async (req, res) => {
     const autorId = req.params.autor_id;
     const autor = await Autor.findOne({ include: Libro }, { where: { id: autorId } });
-    const libros = await Libro.findAll({include: Autor});
+    const libros = await Libro.findAll({ include: Autor });
     let arregloLibros = [];
     for (const libro of libros) {
         for (const autor of libro.autors) {
             for (const libroAutor of libros) {
-                if(libro.id != libroAutor.id){
+                if (libro.id != libroAutor.id) {
                     arregloLibros.push(libroAutor);
                 }
             }
@@ -75,15 +79,9 @@ router.get('/authors/:autor_id', async (req, res) => {
     res.render('autor.html', { autor, arregloLibros });
 });
 
-// router.get('/escribir/:libro_id/:autor_id', async (req, res) => {
-//     // const autorId = req.params.autor_id;
-//     // const libroId = req.params.libro_id;
-//     // const autor = await Autor.findOne({where: {id: autorId}});
-//     // const libro = await Libro.findOne({where: {id: libroId}});
-//     // const result = await autor.addLibro(libro);
-//     // console.log(result);
-//     console.log(req.params);
-// });
+router.delete('/authors/:autor_id', async (req, res) => {
+
+});
 
 router.post('/escribir', async (req, res) => {
     const autorId = parseInt(req.body.autorId);

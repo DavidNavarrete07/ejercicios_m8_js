@@ -1,64 +1,58 @@
-<!doctype html>
-<html lang="en">
+{%extends 'base.html'%}
+{% from 'macros.html' import navbar %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biblioteca - Autor "{{autor.primerNombre}}{{autor.apellido}}"</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-</head>
-
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-6 py-2">
-                <h3 class="text-center text-uppercase fw-bold py-4">Datos del autor</h3>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2">
-                            <b>Nombre completo: <div class="fw-bold text-uppercase d-inline">
-                                    "{{autor.primerNombre}} {{autor.apellido}}"</div></b>
-                            <b class="d-block">Notas: </b>
-                            <p class="fst-italic text-muted">{{autor.notas}}</p>
-                            <hr>
-                            <b class="d-block">Libros: </b>
-                            <ul>
-                                {% for libro in autor.libros %}
-                                    <li>{{libro.titulo}}</li>
+{% block main %}
+{{ navbar('http://localhost:3000/api/authors') }}
+<div class="container">
+    <div class="row">
+        <div class="col-6 py-2">
+            <h3 class="text-center text-uppercase fw-bold py-4">Datos del autor</h3>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2">
+                        <b>Nombre completo: <div class="fw-bold text-uppercase d-inline">
+                                "{{autor.primerNombre}} {{autor.apellido}}"</div></b>
+                        <b class="d-block">Notas: </b>
+                        <p class="fst-italic text-muted">{{autor.notas}}</p>
+                        <hr>
+                        <b class="d-block">Libros: </b>
+                        <ul>
+                            {% for libro in autor.libros %}
+                            <li>{{libro.titulo}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <span class="badge bg-primary rounded-pill">#{{autor.id}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <h3 class="text-center text-uppercase fw-bold py-4">Listado de libros</h3>
+            <div class="d-flex justify-content-center">
+                <form action="http://localhost:3000/api/escribir" method="post">
+                    <div class="row">
+                        <div class="col-8">
+                            <select name="libroId" class="form-select" aria-label="Default select example">
+                                <option selected>Seleccione el libro</option>
+                                {% for libro in arregloLibros %}
+                                <option class="fw-bold" value="{{libro.id}}">{{libro.titulo}}</option>
                                 {% endfor %}
-                            </ul>
+                            </select>
+                            <input type="hidden" name="autorId">
                         </div>
-                        <span class="badge bg-primary rounded-pill">#{{autor.id}}</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-6">
-                <h3 class="text-center text-uppercase fw-bold py-4">Listado de libros</h3>
-                <div class="d-flex justify-content-center">
-                    <form action="http://localhost:3000/api/escribir" method="post">
-                        <div class="row">
-                            <div class="col-8">
-                                <select name="libroId" class="form-select" aria-label="Default select example">
-                                    <option selected>Seleccione el libro</option>
-                                    {% for libro in arregloLibros %}
-                                    <option class="fw-bold" value="{{libro.id}}">{{libro.titulo}}</option>
-                                    {% endfor %}
-                                </select>
-                                <input type="hidden" name="autorId">
-                            </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary fw-bold text-uppercase">Agregar</button>
-                            </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary fw-bold text-uppercase">Agregar</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <script src="/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-start">
+            <button class="btn btn-info text-white mx-2">Editar</button>
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
