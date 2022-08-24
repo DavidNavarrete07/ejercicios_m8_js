@@ -14,15 +14,16 @@
     <div class="row">
       <div class="col-4 py-2">
         <h3 class="text-center text-uppercase fw-bold py-4">Agregar un libro</h3>
-        <form id="formAgregarLibro">
+        <form id="formAgregarLibro" action="http://localhost:3000/api/libros" method="POST">
           <div class="mb-3">
             <label for="inputTitulo" class="form-label fw-bold">Título</label>
-            <input type="text" class="form-control" id="inputTitulo">
+            <input type="text" class="form-control" id="inputTitulo" name="titulo">
           </div>
           <div class="mb-3">
             <div class="mb-3">
               <div class="form-floating">
-                <textarea class="form-control" id="inputDescripcion" style="height: 100px"></textarea>
+                <textarea class="form-control" id="inputDescripcion" style="height: 100px"
+                  name="descripcion"></textarea>
                 <label for="inputDescripcion" class="fw-bold">Descripción</label>
               </div>
             </div>
@@ -46,7 +47,7 @@
               <td class="fw-bold">{{ libro.id }}</td>
               <td class="fst-italic fw-bold">"{{ libro.titulo }}"</td>
               <td>
-                <a href='http://localhost:3000/api/libros/ver/{{libro.id}}' class="btn btn-info fw-bold">Ver datos</a>
+                <a href='http://localhost:3000/api/books/{{libro.id}}' class="btn btn-info fw-bold">Ver datos</a>
               </td>
             </tr>
             {% endfor %}
@@ -58,22 +59,6 @@
   <script src="/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-  <script>
-    const formAgregar = document.querySelector('#formAgregarLibro');
-
-    // Eventos
-    formAgregar.addEventListener('submit', async () => {
-      let titulo = document.querySelector('#inputTitulo').value.trim();
-      let descripcion = document.querySelector('#inputDescripcion').value.trim();
-      const response = await fetch('http://localhost:3000/api/libros', {
-        method: 'POST',
-        body: JSON.stringify({
-          titulo,
-          descripcion,
-        }),
-      });
-    });
-  </script>
 </body>
 
 </html>

@@ -22,7 +22,11 @@
                             <p class="fst-italic text-muted">{{libro.descripcion}}</p>
                             <hr>
                             <b class="d-block">Autores: </b>
-                            <!-- autores -->
+                            <ul>
+                                {% for autor in libro.autors %}
+                                    <li>{{autor.primerNombre}} {{autor.apellido}}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         <span class="badge bg-primary rounded-pill">#{{libro.id}}</span>
                     </li>
@@ -31,20 +35,24 @@
             <div class="col-6">
                 <h3 class="text-center text-uppercase fw-bold py-4">Listado de autores</h3>
                 <div class="d-flex justify-content-center">
-                    <div class="row">
-                        <div class="col-8">
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Seleccione el autor</option>
-                                {% for autor in autores %}
-                                <option class="fw-bold" value="{{autor.id}}">{{autor.primerNombre}} {{autor.apellido}}
-                                </option>
-                                {% endfor %}
-                            </select>
+                    <form action="http://localhost:3000/api/escribir" method="post">
+                        <div class="row">
+                            <div class="col-8">
+                                <select name="autorId" class="form-select" aria-label="Default select example">
+                                    <option selected>Seleccione el autor</option>
+                                    {% for autor in arregloAutores %}
+                                    <option class="fw-bold" value="{{autor.id}}">{{autor.primerNombre}}
+                                        {{autor.apellido}}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="hidden" name="libroId" value="{{libro.id}}">
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary text-uppercase">Agregar</button>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <a href="" class="btn btn-primary fw-bold text-uppercase">Agregar</a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

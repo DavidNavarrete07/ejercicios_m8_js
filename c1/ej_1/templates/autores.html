@@ -14,19 +14,19 @@
         <div class="row">
             <div class="col-4 py-2">
                 <h3 class="text-center text-uppercase fw-bold py-4">Agregar un autor</h3>
-                <form id="formAgregarAutor">
+                <form id="formAgregarAutor" action="http://localhost:3000/api/authors" method="POST">
                     <div class="mb-3">
                         <label for="inputPrimerNombre" class="form-label fw-bold">Primer nombre</label>
-                        <input type="text" class="form-control" id="inputPrimerNombre">
+                        <input type="text" class="form-control" id="inputPrimerNombre" name="primerNombre">
                     </div>
                     <div class="mb-3">
                         <label for="inputApellido" class="form-label fw-bold">Apellido</label>
-                        <input type="text" class="form-control" id="inputApellido">
+                        <input type="text" class="form-control" id="inputApellido" name="apellido">
                     </div>
                     <div class="mb-3">
                         <div class="form-floating">
                             <textarea class="form-control" placeholder="Leave a comment here" id="inputNotas"
-                                style="height: 100px"></textarea>
+                                style="height: 100px" name="notas"></textarea>
                             <label for="inputNotas" class="fw-bold">Notas</label>
                         </div>
                     </div>
@@ -51,7 +51,8 @@
                             <td class="fst-italic fw-bold">"{{ autor.primerNombre }}"</td>
                             <td class="fst-italic fw-bold">"{{ autor.apellido }}"</td>
                             <td>
-                                <a href='http://localhost:3000/api/autores/ver/{{autor.id}}' class="btn btn-info fw-bold">Ver
+                                <a href='http://localhost:3000/api/authors/{{autor.id}}'
+                                    class="btn btn-info fw-bold">Ver
                                     datos</a>
                             </td>
                         </tr>
@@ -64,23 +65,6 @@
     <script src="/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script>
-        const formAgregar = document.querySelector('#formAgregarAutor');
-        // Eventos
-        formAgregar.addEventListener('submit', async () => {
-            let primerNombre = document.querySelector('#inputPrimerNombre').value.trim();
-            let apellido = document.querySelector('#inputApellido').value.trim();
-            let notas = document.querySelector('#inputNotas').value.trim();
-            const response = await fetch('http://localhost:3000/api/autores', {
-                method: 'POST',
-                body: JSON.stringify({
-                    primerNombre,
-                    apellido,
-                    notas,
-                }),
-            });
-        });
-    </script>
 </body>
 
 </html>
