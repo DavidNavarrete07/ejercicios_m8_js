@@ -1,0 +1,19 @@
+{
+  "name": "ninja_money",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.2.0",
+    "chokidar": "^3.5.3",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "nunjucks": "^3.2.3"
+  }
+}

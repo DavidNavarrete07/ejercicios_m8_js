@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ninja Money</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+        body{
+            background: url('https://wallpaperaccess.com/full/49956.jpg') no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- {% block main %}
+
+    {% endblock %} -->
+
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-10 d-flex justify-content-center">
+                <div class="card text-bg-dark mb-3 text-center" style="max-width: 18rem;">
+                    <div class="card-header text-uppercase fw-bold">Tu oro: </div>
+                    <div class="card-body">
+                        <p class="card-text fw-bold text-warning">$ {{oro}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <img src="https://reygif.com/media/5/ninja-luchando-70547.gif" class="img-fluid" height="100" width="100">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <form action="/process_money/granja" method="post">
+                    <div class="card border-primary text-center shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-uppercase">Granja</h5>
+                            <p class="card-text fst-italic fw-bold">(Puede ganar o perder entre 10-20 oros).</p>
+                            <input type="hidden" name="granja" value="granja">
+                            <button type="submit" class="btn btn-primary">Buscar oro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">
+                <form action="/process_money/cueva" method="post">
+                    <div class="card border-primary text-center shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-uppercase">Cueva</h5>
+                            <p class="card-text fst-italic fw-bold">(Puede ganar o perder entre 5-10 oros).</p>
+                            <input type="hidden" name="cueva" value="cueva">
+                            <button type="submit" class="btn btn-primary">Buscar oro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">
+                <form action="/process_money/casa" method="post">
+                    <div class="card border-primary text-center shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-uppercase">Casa</h5>
+                            <p class="card-text fst-italic fw-bold">(Puede ganar o perder entre 2-5 oros).</p>
+                            <input type="hidden" name="casa" value="casa">
+                            <button type="submit" class="btn btn-primary">Buscar oro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-3">
+                <form action="/process_money/casino" method="post">
+                    <div class="card border-primary text-center shadow">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-uppercase">Casino</h5>
+                            <p class="card-text fst-italic fw-bold">(Puede ganar o perder entre 0-50 oros).</p>
+                            <input type="hidden" name="casino" value="casino">
+                            <button type="submit" class="btn btn-primary">Buscar oro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-12 py-5">
+            <div class="form-floating shadow">
+                <textarea class="form-control" name="actividades" style="height: 100px"></textarea>
+                <label for="floatingTextarea2" class="fw-bold">Actividades</label>
+            </div>
+        </div>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
