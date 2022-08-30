@@ -87,11 +87,17 @@
         </div>
         <div class="col-12 py-5">
             <h3 class="text-center fw-bold text-uppercase">Actividades</h3>
-            {% for message in messages %}
-            <div class="alert alert-dark shadow" role="alert">
-                {{message}}
-            </div>
-            {% endfor %}
+                {% for message in messages %}
+                    {% if message.accion == 'encontró: ' %}
+                        <div class="alert fw-bold alert-success" role="alert">
+                            {{message.message}}
+                        </div>
+                        {% else %}
+                        <div class="alert fw-bold alert-danger" role="alert">
+                            {{message.message}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
         </div>
     </div>
     <script src="/js/bootstrap.bundle.min.js"

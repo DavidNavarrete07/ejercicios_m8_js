@@ -47,31 +47,37 @@ app.get('/', (req, res) => {
 app.post('/process_money/:lugar', (req, res) => {
     let random = 0;
     let message;
+    let accion;
     let lugar = req.params.lugar;
     if (lugar == 'granja') {
         random = randomNumber(10, 20);
         req.session.oro += random;
-        message = 'El ninja encontró: ' + random + ' oro(s) en la casa';
-        req.session.messages.push([message]);
+        accion = 'encontró: '
+        message = 'El ninja ' + accion + ' ' + random + ' oro(s) en la granja';
+        req.session.messages.push({message, accion});
     } else if (lugar == 'cueva') {
         random = randomNumber(5, 10);
         req.session.oro += random;
-        message = 'El ninja encontró: ' + random + ' oro(s) en la cueva';
-        req.session.messages.push([message]);
+        accion = 'encontró: '
+        message = 'El ninja ' + accion + ' ' + random + ' oro(s) en la cueva';
+        req.session.messages.push({message, accion});
     } else if (lugar == 'casa') {
         random = randomNumber(2, 5);
         req.session.oro += random;
-        message = 'El ninja encontró: ' + random + ' oro(s) en la casa';
-        req.session.messages.push([message]);
+        accion = 'encontró: '
+        message = 'El ninja ' + accion + ' ' + random + ' oro(s) en la casa';
+        req.session.messages.push({message, accion});
     } else if (lugar == 'casino') {
         random = randomNumber(-50, 50);
         req.session.oro += random;
         if (random < 0) {
-            message = 'El ninja perdió: ' + random + ' oro(s) en el casino';
-            req.session.messages.push([message]);
+            accion = 'perdió: ';
+            message = 'El ninja ' + accion + ' ' + random + ' oro(s) en el casino';
+            req.session.messages.push({message, accion});
         } else {
-            message = 'El ninja encontró: ' + random + ' oro(s) en el casino';
-            req.session.messages.push([message]);
+            accion = 'encontró: '
+            message = 'El ninja ' + accion + ' ' + random + ' oro(s) en el casino';
+            req.session.messages.push({message, accion});
         }
     } else {
         console.log('No se especifico el formulario');
