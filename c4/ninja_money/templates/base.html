@@ -8,7 +8,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <style>
-        body{
+        body {
             background: url('https://wallpaperaccess.com/full/49956.jpg') no-repeat;
             background-size: cover;
         }
@@ -31,7 +31,8 @@
                 </div>
             </div>
             <div class="col-2">
-                <img src="https://reygif.com/media/5/ninja-luchando-70547.gif" class="img-fluid" height="100" width="100">
+                <img src="https://reygif.com/media/5/ninja-luchando-70547.gif" class="img-fluid" height="100"
+                    width="100">
             </div>
         </div>
         <div class="row">
@@ -85,10 +86,12 @@
             </div>
         </div>
         <div class="col-12 py-5">
-            <div class="form-floating shadow">
-                <textarea class="form-control" name="actividades" style="height: 100px"></textarea>
-                <label for="floatingTextarea2" class="fw-bold">Actividades</label>
+            <h3 class="text-center fw-bold text-uppercase">Actividades</h3>
+            {% for message in messages %}
+            <div class="alert alert-dark shadow" role="alert">
+                {{message}}
             </div>
+            {% endfor %}
         </div>
     </div>
     <script src="/js/bootstrap.bundle.min.js"

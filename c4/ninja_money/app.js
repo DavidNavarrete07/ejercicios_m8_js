@@ -30,36 +30,48 @@ function randomNumber(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
 }
 
+
 app.get('/', (req, res) => {
     if (req.session.oro == undefined) {
         req.session.oro = 0;
     }
+    if(req.session.messages == undefined){
+        req.session.messages = [];
+    }
     const oro = req.session.oro;
-    res.render('base.html', { oro });
+    const messages = req.session.messages;
+    console.log(messages);
+    res.render('base.html', { oro, messages });
 });
 
 app.post('/process_money/:lugar', (req, res) => {
     let random = 0;
+    let message;
     let lugar = req.params.lugar;
     if (lugar == 'granja') {
         random = randomNumber(10, 20);
         req.session.oro += random;
-        console.log('El ninja encontró: ' + random + ' oro(s) en la casa');
+        message = 'El ninja encontró: ' + random + ' oro(s) en la casa';
+        req.session.messages.push([message]);
     } else if (lugar == 'cueva') {
         random = randomNumber(5, 10);
         req.session.oro += random;
-        console.log('El ninja encontró: ' + random + ' oro(s) en la cueva');
+        message = 'El ninja encontró: ' + random + ' oro(s) en la cueva';
+        req.session.messages.push([message]);
     } else if (lugar == 'casa') {
         random = randomNumber(2, 5);
         req.session.oro += random;
-        console.log('El ninja encontró: ' + random + ' oro(s) en la casa');
+        message = 'El ninja encontró: ' + random + ' oro(s) en la casa';
+        req.session.messages.push([message]);
     } else if (lugar == 'casino') {
         random = randomNumber(-50, 50);
         req.session.oro += random;
         if (random < 0) {
-            console.log('El ninja perdió: ' + random + ' oro(s) en el casino');
+            message = 'El ninja perdió: ' + random + ' oro(s) en el casino';
+            req.session.messages.push([message]);
         } else {
-            console.log('El ninja encontró: ' + random + ' oro(s) en el casino');
+            message = 'El ninja encontró: ' + random + ' oro(s) en el casino';
+            req.session.messages.push([message]);
         }
     } else {
         console.log('No se especifico el formulario');
