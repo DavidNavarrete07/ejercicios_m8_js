@@ -1,0 +1,8 @@
+{% extends './base.html' %}
+{% from 'macros/macros.html' import navbar %}
+{% block main %}
+{{ navbar('/', user) }}
+<div class="container d-flex justify-content-center py-5">
+    <h1 class="fw-bold">estoy en el home {{user.name}}</h1>
+</div>
+{% endblock %}
