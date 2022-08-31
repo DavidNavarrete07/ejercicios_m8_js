@@ -1,8 +1,53 @@
 {% extends './base.html' %}
 {% from 'macros/macros.html' import navbar %}
+{%block css %}
+<link rel="stylesheet" href="public/css/styles.css">
+{% endblock %}
 {% block main %}
 {{ navbar('/', user) }}
-<div class="container d-flex justify-content-center py-5">
-    <h1 class="fw-bold">estoy en el home {{user.name}}</h1>
-</div>
+<section class="bg-section text-white">
+    <div class="container py-5 mx-auto">
+        <form action="/message" method="post">
+            <h3 class="fw-bold text-start">Postear un mensaje</h3>
+            <div class="form-floating">
+                <textarea class="form-control" id="inputMessage" name="message" style="height: 100px"></textarea>
+                <label for="inputMessage" class="fw-bold text-dark">Mensaje</label>
+                <input type="hidden" name="userEmail" value="{{user.email}}">
+            </div>
+            <div class="text-end py-2">
+                <button type="submit" class="btn btn-primary fw-bold shadow-lg">Postear mensaje</button>
+            </div>
+        </form>
+    </div>
+</section>
+<section class="bg-white">
+    <div class="container py-5 mx-auto">
+        <h3 class="fw-bold text-start">Mensajes</h3>
+        <div class="list-group shadow">
+            {% for message in messages %}
+                <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 fw-bold">{{message.user.firstName}} {{message.user.lastName}}</h5>
+                        <small>{{message.createdAt}}</small>
+                    </div>
+                    <p class="mb-1 fst-italic">{{message.message}}</p>
+                </a>
+            {% endfor %}
+            <!-- <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 fw-bold">Usuario</h5>
+                    <small class="text-muted">Fecha</small>
+                </div>
+                <p class="mb-1 fst-italic">Mensaje</p>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1 fw-bold">Usuario</h5>
+                    <small class="text-muted">Fecha</small>
+                </div>
+                <p class="mb-1 fst-italic">Mensaje</p>
+            </a> -->
+        </div>
+    </div>
+</section>
 {% endblock %}

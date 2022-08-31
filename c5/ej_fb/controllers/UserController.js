@@ -1,4 +1,5 @@
 const User = require('../models/User.js');
+const Message = require('../models/Message.js');
 const bcrypt = require('bcrypt');
 
 async function saveUser(user) {
@@ -33,8 +34,13 @@ async function findUser(emailUser) {
     return user;
 }
 
+async function getMessagesOfUser(userId){
+    const user = await User.findAll({include: Message, where: {id: userId}});
+    return user;
+}
+
 async function comparePassword(password, userPassword){
     return await bcrypt.compare(password, userPassword);
 }
 
-module.exports = { saveUser, findUser, comparePassword };
+module.exports = { saveUser, findUser, getMessagesOfUser, comparePassword };

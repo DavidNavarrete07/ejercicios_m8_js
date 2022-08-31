@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const UserController = require('../controllers/UserController.js');
+const User = require('../models/User.js');
 
 const router = Router();
 
@@ -23,7 +24,9 @@ router.post('/login', async (req, res) => {
     }
     req.session.user = {
         name: `${userFinded.firstName} ${userFinded.lastName}`, 
-        email: userFinded.email
+        email: userFinded.email, 
+        date: userFinded.createdAt,
+        messages: await UserController.getMessagesOfUser(userFinded.id)
     }
     res.redirect('/');
 });

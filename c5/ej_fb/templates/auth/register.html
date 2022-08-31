@@ -1,40 +1,60 @@
 {% extends '../base.html' %}
+{% block css %}
+    <style>
+        body{
+            background: rgb(2, 0, 36);
+            background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(144, 189, 246, 1) 0%, rgba(0, 212, 255, 1) 100%);
+        }
+    </style>
+{% endblock %}
 {% block main %}
 <div class="container d-flex justify-content-center py-5">
-    <div class="card w-25 shadow-lg">
-        <div class="card-header text-center bg-primary text-white fw-bold text-uppercase">
-            Registro
-        </div>
+    <div class="card w-50 shadow-lg">
         <div class="card-body">
-            <form action="/register" method="POST">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <label for="inputFirstName" class="form-label fw-bold">Nombre</label>
-                        <input type="text" class="form-control" id="inputFirstName" name="firstName" required>  
-                    </div>
-                    <div class="col-6">
-                        <label for="inputLastName" class="form-label fw-bold">Apellido</label>
-                        <input type="text" class="form-control" id="inputLastName" name="lastName" required>  
-                    </div>
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="text-center text-dark fw-bold text-uppercase">
+                        Registro
+                    </h3>
                 </div>
-                <div class="mb-3">
-                    <label for="inputEmail" class="form-label fw-bold">Correo electrónico</label>
-                    <input type="email" placeholder="example@gmail.com" class="form-control" id="inputEmail" name="email" required>
+                <div class="col-6 py-4">
+                    <img src="public/images/auth/register.svg" alt="" class="img-fluid">
                 </div>
-                <div class="mb-3">
-                    <label for="inputPassword" class="form-label fw-bold">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="inputPassword" min="8" required>
+                <div class="col-6 py-4">
+                    <form action="/register" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <label for="inputFirstName" class="form-label fw-bold">Nombre</label>
+                                <input type="text" class="form-control" id="inputFirstName" name="firstName" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="inputLastName" class="form-label fw-bold">Apellido</label>
+                                <input type="text" class="form-control" id="inputLastName" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label fw-bold">Correo electrónico</label>
+                            <input type="email" placeholder="example@gmail.com" class="form-control" id="inputEmail"
+                                name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label fw-bold">Contraseña</label>
+                            <input type="password" class="form-control" name="password" id="inputPassword" min="8"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputConfirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
+                            <input type="password" class="form-control" name="confirmPassword" id="inputConfirmPassword"
+                                min="8" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary fw-bold w-100">Registrarme</button>
+                            <p class="fw-bold m-2">¿Ya tienes cuenta?</p>
+                            <a href="http://localhost:3000/login" class="btn btn-light fw-bold d-block w-100">Iniciar sesión</a>
+                        </div>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="inputConfirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
-                    <input type="password" class="form-control" name="confirmPassword" id="inputConfirmPassword" min="8" required>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary fw-bold">Registrarme</button>
-                    <p class="fw-bold m-2">¿Ya tienes cuenta?</p>
-                    <a href="http://localhost:3000/login" class="btn btn-light fw-bold d-block m-2">Iniciar sesión</a>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
